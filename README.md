@@ -1,26 +1,15 @@
-#RAG Policy Assistant
+# RAG Policy Assistant
+
 AI-powered Q&A over company HR policies using RAG
 
 ## Quick Start
 ```bash
 git clone https://github/com/YOUR_NAME/rag-policy-app
-```
-```bash
 cd rag-policy-app
-```
-```bash
 python -m venv venv && source venv/bin/activate
-```
-```bash
 pip install -r requirements.txt
-```
-```.env.example
 cp .env.example .env  # Add your API key
-```
-```bash
-python sec/ingest.py # Build vecore index (run once)
-```
-```bash
+python sec/ingest.py # Build vector index (run once)
 python app.py #Start at http://localhost:5000
 ```
 
