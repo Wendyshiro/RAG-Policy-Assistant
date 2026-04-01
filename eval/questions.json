@@ -1,0 +1,10 @@
+[
+    {
+        "id":"q01",
+        "question":"How many PTO days does a 3-year employee accrue per month?",
+        "gold_answer": "1.67 days per month",
+        "source_doc": "pto_policy.md"
+        "category":"pto"
+    },
+    
+]
