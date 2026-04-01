@@ -1,4 +1,4 @@
-# RAG Policy Assistant
+# RAG Policy App
 
 AI-powered Q&A over company HR policies using RAG
 
