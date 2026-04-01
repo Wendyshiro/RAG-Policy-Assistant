@@ -1,10 +1,212 @@
 [
     {
         "id":"q01",
-        "question":"How many PTO days does a 3-year employee accrue per month?",
-        "gold_answer": "1.67 days per month",
-        "source_doc": "pto_policy.md"
+        "question":"After how many days of employment are full-time employees eligible for PTO?",
+        "gold_answer":"After 90 days of employment",
+        "source_doc":"pto_policy.md",
         "category":"pto"
     },
-    
+    {
+        "id":"q02",
+        "question":"What types of leave are included in the PTO policy?",
+        "gold_answer":"Vacation days, sick leave, and personal days",
+        "source_doc":"pto_policy.md",
+        "category":"pto"
+    },
+    {
+        "id":"q03",
+        "question":"Who is eligible for PTO under the policy?",
+        "gold_answer":"All full-time employees",
+        "source_doc":"pto_policy.md",
+        "category":"pto"
+    },
+    {
+        "id":"q04",
+        "question":"What is the purpose of the PTO policy?",
+        "gold_answer":"To provide employees time to rest, recharge, and attend to personal matters",
+        "source_doc":"pto_policy.md",
+        "category":"pto"
+    },
+    {
+        "id":"q05",
+        "question":"Which employees are eligible for remote work?",
+        "gold_answer":"Full-time employees in roles that do not require daily in-office presence and who have completed their 90-day probationary period",
+        "source_doc":"remote_work_policy.md",
+        "category":"remote_work"
+    },
+    {
+        "id":"q06",
+        "question":"What is one requirement employees must meet before working remotely?",
+        "gold_answer":"They must complete a 90-day probationary period",
+        "source_doc":"remote_work_policy.md",
+        "category":"remote_work"
+    },
+    {
+        "id":"q07",
+        "question":"What is the main goal of the remote work policy?",
+        "gold_answer":"To ensure productivity, security, and alignment with company objectives while maintaining work-life balance",
+        "source_doc":"remote_work_policy.md",
+        "category":"remote_work"
+    },
+    {
+        "id":"q08",
+        "question":"What type of expenses will the company reimburse?",
+        "gold_answer":"Reasonable business expenses incurred while performing job duties",
+        "source_doc":"expense_reimbursement.md",
+        "category":"expenses"
+    },
+    {
+        "id":"q09",
+        "question":"What is the purpose of the expense reimbursement policy?",
+        "gold_answer":"To ensure employees are reimbursed fairly while maintaining fiscal responsibility",
+        "source_doc":"expense_reimbursement.md",
+        "category":"expenses"
+    },
+    {
+        "id":"q10",
+        "question":"What must expenses be in order to qualify for reimbursement?",
+        "gold_answer":"Reasonable and business-related",
+        "source_doc":"expense_reimbursement.md",
+        "category":"expenses"
+    },
+    {
+        "id":"q11",
+        "question":"What are employees responsible for under the information security policy?",
+        "gold_answer":"Maintaining the confidentiality, integrity, and availability of company information",
+        "source_doc":"information_security.md",
+        "category":"security"
+    },
+    {
+        "id":"q12",
+        "question":"Who does the information security policy apply to?",
+        "gold_answer":"All employees, contractors, and third parties with access to company systems",
+        "source_doc":"information_security.md",
+        "category":"security"
+    },
+    {
+        "id":"q13",
+        "question":"What is the main purpose of the information security policy?",
+        "gold_answer":"To establish minimum standards for protecting company and customer information",
+        "source_doc":"information_security.md",
+        "category":"security"
+    },
+    {
+        "id":"q14",
+        "question":"What type of workplace does the company aim to maintain according to the code of conduct?",
+        "gold_answer":"A professional, respectful, and ethical workplace",
+        "source_doc":"code_of_conduct.md",
+        "category":"conduct"
+    },
+    {
+        "id":"q15",
+        "question":"How should employees treat others according to the code of conduct?",
+        "gold_answer":"With dignity and respect",
+        "source_doc":"code_of_conduct.md",
+        "category":"conduct"
+    },
+    {
+        "id":"q16",
+        "question":"Who does the code of conduct apply to?",
+        "gold_answer":"All employees, contractors, and representatives of the company",
+        "source_doc":"code_of_conduct.md",
+        "category":"conduct"
+    },
+    {
+        "id":"q17",
+        "question":"When do benefits begin for full-time employees?",
+        "gold_answer":"On the first day of the month following 30 days of employment",
+        "source_doc":"benefits_policy.md",
+        "category":"benefits"
+    },
+    {
+        "id":"q18",
+        "question":"Who is eligible for all benefits outlined in the benefits policy?",
+        "gold_answer":"Full-time employees",
+        "source_doc":"benefits_policy.md",
+        "category":"benefits"
+    },
+    {
+        "id":"q19",
+        "question":"What is the goal of the benefits policy?",
+        "gold_answer":"To support employee health, wellness, and financial security",
+        "source_doc":"benefits_policy.md",
+        "category":"benefits"
+    },
+    {
+        "id":"q20",
+        "question":"What behavior is prohibited under the drug and alcohol policy?",
+        "gold_answer":"Being under the influence of drugs or alcohol at work",
+        "source_doc":"drug_alcohol_testing.md",
+        "category":"compliance"
+    },
+    {
+        "id":"q21",
+        "question":"What else is prohibited regarding drugs in the workplace?",
+        "gold_answer":"Using, possessing, or distributing illegal drugs",
+        "source_doc":"drug_alcohol_testing.md",
+        "category":"compliance"
+    },
+    {
+        "id":"q22",
+        "question":"What is the purpose of the drug and alcohol testing policy?",
+        "gold_answer":"To prevent substance abuse and ensure workplace safety",
+        "source_doc":"drug_alcohol_testing.md",
+        "category":"compliance"
+    },
+    {
+        "id":"q23",
+        "question":"What does the attendance policy emphasize as essential for business continuity?",
+        "gold_answer":"Regular attendance and punctuality",
+        "source_doc":"attendance_policy.md",
+        "category":"attendance"
+    },
+    {
+        "id":"q24",
+        "question":"What are full-time employees expected to work according to the attendance policy?",
+        "gold_answer":"Their full scheduled hours",
+        "source_doc":"attendance_policy.md",
+        "category":"attendance"
+    },
+    {
+        "id":"q25",
+        "question":"What is considered personal data under the GDPR policy?",
+        "gold_answer":"Any information relating to an identified or identifiable individual",
+        "source_doc":"data_privacy_gdpr.md",
+        "category":"privacy"
+    },
+    {
+        "id":"q26",
+        "question":"Which regulations does the data privacy policy mention?",
+        "gold_answer":"GDPR and CCPA",
+        "source_doc":"data_privacy_gdpr.md",
+        "category":"privacy"
+    },
+    {
+        "id":"q27",
+        "question":"What is the company's commitment under the workplace safety policy?",
+        "gold_answer":"To provide a safe and healthy workplace",
+        "source_doc":"workplace_safety.md",
+        "category":"safety"
+    },
+    {
+        "id":"q28",
+        "question":"Who does the workplace safety policy apply to?",
+        "gold_answer":"Employees, contractors, and visitors",
+        "source_doc":"workplace_safety.md",
+        "category":"safety"
+    },
+    {
+        "id":"q29",
+        "question":"What is the goal of the performance management policy?",
+        "gold_answer":"To align employee performance with company objectives and support development",
+        "source_doc":"performance_management.md",
+        "category":"performance"
+    },
+    {
+        "id":"q30",
+        "question":"What does the social media policy aim to balance?",
+        "gold_answer":"Company interests in productivity and brand protection with employee rights to limited personal use",
+        "source_doc":"social_media_internet_use.md",
+        "category":"it"
+    }
 ]
