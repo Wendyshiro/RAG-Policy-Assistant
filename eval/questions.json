@@ -1,212 +1,212 @@
 [
-    {
-        "id":"q01",
-        "question":"After how many days of employment are full-time employees eligible for PTO?",
-        "gold_answer":"After 90 days of employment",
-        "source_doc":"pto_policy.md",
-        "category":"pto"
-    },
-    {
-        "id":"q02",
-        "question":"What types of leave are included in the PTO policy?",
-        "gold_answer":"Vacation days, sick leave, and personal days",
-        "source_doc":"pto_policy.md",
-        "category":"pto"
-    },
-    {
-        "id":"q03",
-        "question":"Who is eligible for PTO under the policy?",
-        "gold_answer":"All full-time employees",
-        "source_doc":"pto_policy.md",
-        "category":"pto"
-    },
-    {
-        "id":"q04",
-        "question":"What is the purpose of the PTO policy?",
-        "gold_answer":"To provide employees time to rest, recharge, and attend to personal matters",
-        "source_doc":"pto_policy.md",
-        "category":"pto"
-    },
-    {
-        "id":"q05",
-        "question":"Which employees are eligible for remote work?",
-        "gold_answer":"Full-time employees in roles that do not require daily in-office presence and who have completed their 90-day probationary period",
-        "source_doc":"remote_work_policy.md",
-        "category":"remote_work"
-    },
-    {
-        "id":"q06",
-        "question":"What is one requirement employees must meet before working remotely?",
-        "gold_answer":"They must complete a 90-day probationary period",
-        "source_doc":"remote_work_policy.md",
-        "category":"remote_work"
-    },
-    {
-        "id":"q07",
-        "question":"What is the main goal of the remote work policy?",
-        "gold_answer":"To ensure productivity, security, and alignment with company objectives while maintaining work-life balance",
-        "source_doc":"remote_work_policy.md",
-        "category":"remote_work"
-    },
-    {
-        "id":"q08",
-        "question":"What type of expenses will the company reimburse?",
-        "gold_answer":"Reasonable business expenses incurred while performing job duties",
-        "source_doc":"expense_reimbursement.md",
-        "category":"expenses"
-    },
-    {
-        "id":"q09",
-        "question":"What is the purpose of the expense reimbursement policy?",
-        "gold_answer":"To ensure employees are reimbursed fairly while maintaining fiscal responsibility",
-        "source_doc":"expense_reimbursement.md",
-        "category":"expenses"
-    },
-    {
-        "id":"q10",
-        "question":"What must expenses be in order to qualify for reimbursement?",
-        "gold_answer":"Reasonable and business-related",
-        "source_doc":"expense_reimbursement.md",
-        "category":"expenses"
-    },
-    {
-        "id":"q11",
-        "question":"What are employees responsible for under the information security policy?",
-        "gold_answer":"Maintaining the confidentiality, integrity, and availability of company information",
-        "source_doc":"information_security.md",
-        "category":"security"
-    },
-    {
-        "id":"q12",
-        "question":"Who does the information security policy apply to?",
-        "gold_answer":"All employees, contractors, and third parties with access to company systems",
-        "source_doc":"information_security.md",
-        "category":"security"
-    },
-    {
-        "id":"q13",
-        "question":"What is the main purpose of the information security policy?",
-        "gold_answer":"To establish minimum standards for protecting company and customer information",
-        "source_doc":"information_security.md",
-        "category":"security"
-    },
-    {
-        "id":"q14",
-        "question":"What type of workplace does the company aim to maintain according to the code of conduct?",
-        "gold_answer":"A professional, respectful, and ethical workplace",
-        "source_doc":"code_of_conduct.md",
-        "category":"conduct"
-    },
-    {
-        "id":"q15",
-        "question":"How should employees treat others according to the code of conduct?",
-        "gold_answer":"With dignity and respect",
-        "source_doc":"code_of_conduct.md",
-        "category":"conduct"
-    },
-    {
-        "id":"q16",
-        "question":"Who does the code of conduct apply to?",
-        "gold_answer":"All employees, contractors, and representatives of the company",
-        "source_doc":"code_of_conduct.md",
-        "category":"conduct"
-    },
-    {
-        "id":"q17",
-        "question":"When do benefits begin for full-time employees?",
-        "gold_answer":"On the first day of the month following 30 days of employment",
-        "source_doc":"benefits_policy.md",
-        "category":"benefits"
-    },
-    {
-        "id":"q18",
-        "question":"Who is eligible for all benefits outlined in the benefits policy?",
-        "gold_answer":"Full-time employees",
-        "source_doc":"benefits_policy.md",
-        "category":"benefits"
-    },
-    {
-        "id":"q19",
-        "question":"What is the goal of the benefits policy?",
-        "gold_answer":"To support employee health, wellness, and financial security",
-        "source_doc":"benefits_policy.md",
-        "category":"benefits"
-    },
-    {
-        "id":"q20",
-        "question":"What behavior is prohibited under the drug and alcohol policy?",
-        "gold_answer":"Being under the influence of drugs or alcohol at work",
-        "source_doc":"drug_alcohol_testing.md",
-        "category":"compliance"
-    },
-    {
-        "id":"q21",
-        "question":"What else is prohibited regarding drugs in the workplace?",
-        "gold_answer":"Using, possessing, or distributing illegal drugs",
-        "source_doc":"drug_alcohol_testing.md",
-        "category":"compliance"
-    },
-    {
-        "id":"q22",
-        "question":"What is the purpose of the drug and alcohol testing policy?",
-        "gold_answer":"To prevent substance abuse and ensure workplace safety",
-        "source_doc":"drug_alcohol_testing.md",
-        "category":"compliance"
-    },
-    {
-        "id":"q23",
-        "question":"What does the attendance policy emphasize as essential for business continuity?",
-        "gold_answer":"Regular attendance and punctuality",
-        "source_doc":"attendance_policy.md",
-        "category":"attendance"
-    },
-    {
-        "id":"q24",
-        "question":"What are full-time employees expected to work according to the attendance policy?",
-        "gold_answer":"Their full scheduled hours",
-        "source_doc":"attendance_policy.md",
-        "category":"attendance"
-    },
-    {
-        "id":"q25",
-        "question":"What is considered personal data under the GDPR policy?",
-        "gold_answer":"Any information relating to an identified or identifiable individual",
-        "source_doc":"data_privacy_gdpr.md",
-        "category":"privacy"
-    },
-    {
-        "id":"q26",
-        "question":"Which regulations does the data privacy policy mention?",
-        "gold_answer":"GDPR and CCPA",
-        "source_doc":"data_privacy_gdpr.md",
-        "category":"privacy"
-    },
-    {
-        "id":"q27",
-        "question":"What is the company's commitment under the workplace safety policy?",
-        "gold_answer":"To provide a safe and healthy workplace",
-        "source_doc":"workplace_safety.md",
-        "category":"safety"
-    },
-    {
-        "id":"q28",
-        "question":"Who does the workplace safety policy apply to?",
-        "gold_answer":"Employees, contractors, and visitors",
-        "source_doc":"workplace_safety.md",
-        "category":"safety"
-    },
-    {
-        "id":"q29",
-        "question":"What is the goal of the performance management policy?",
-        "gold_answer":"To align employee performance with company objectives and support development",
-        "source_doc":"performance_management.md",
-        "category":"performance"
-    },
-    {
-        "id":"q30",
-        "question":"What does the social media policy aim to balance?",
-        "gold_answer":"Company interests in productivity and brand protection with employee rights to limited personal use",
-        "source_doc":"social_media_internet_use.md",
-        "category":"it"
-    }
+  {
+    "id": "q01",
+    "question": "How many PTO days per year does a full-time employee with 4 years of tenure receive?",
+    "gold_answer": "20 days per year (160 hours), which applies to employees in the Years 3-5 bracket.",
+    "source_doc": "pto_policy.md",
+    "category": "pto"
+  },
+  {
+    "id": "q02",
+    "question": "How many days of unused PTO can an employee carry over to the next calendar year?",
+    "gold_answer": "Up to 5 days of unused PTO may be carried over. Any unused PTO beyond the 5-day limit is forfeited at the end of the calendar year.",
+    "source_doc": "pto_policy.md",
+    "category": "pto"
+  },
+  {
+    "id": "q03",
+    "question": "After how many consecutive sick days is a doctor's note required?",
+    "gold_answer": "A doctor's note may be required for absences exceeding 3 consecutive days.",
+    "source_doc": "pto_policy.md",
+    "category": "pto"
+  },
+  {
+    "id": "q04",
+    "question": "How many paid bereavement days is an employee entitled to for the death of an immediate family member?",
+    "gold_answer": "Up to 5 days of paid bereavement leave for the death of an immediate family member (spouse, child, parent, or sibling).",
+    "source_doc": "pto_policy.md",
+    "category": "pto"
+  },
+  {
+    "id": "q05",
+    "question": "What are the core business hours remote employees must be available during?",
+    "gold_answer": "Remote employees must be available during core business hours of 9:00 AM to 5:00 PM in their local time zone.",
+    "source_doc": "remote_work_policy.md",
+    "category": "remote_work"
+  },
+  {
+    "id": "q06",
+    "question": "What is the monthly internet stipend provided to remote employees?",
+    "gold_answer": "The company provides a monthly internet stipend of up to $50. Employees submit receipts for reimbursement.",
+    "source_doc": "remote_work_policy.md",
+    "category": "remote_work"
+  },
+  {
+    "id": "q07",
+    "question": "How many days notice is required to terminate a remote work arrangement?",
+    "gold_answer": "Remote work arrangements may be terminated by either the employee or the company with 2 weeks' notice.",
+    "source_doc": "remote_work_policy.md",
+    "category": "remote_work"
+  },
+  {
+    "id": "q08",
+    "question": "Can an employee on a Performance Improvement Plan (PIP) work remotely?",
+    "gold_answer": "No. Employees on a Performance Improvement Plan (PIP) are explicitly listed among those who cannot work remotely.",
+    "source_doc": "remote_work_policy.md",
+    "category": "remote_work"
+  },
+  {
+    "id": "q09",
+    "question": "What is the standard mileage reimbursement rate for employees using their personal vehicle for business travel?",
+    "gold_answer": "Employees are reimbursed at the current IRS mileage rate, which is currently $0.67 per mile.",
+    "source_doc": "expense_reimbursement.md",
+    "category": "expense"
+  },
+  {
+    "id": "q10",
+    "question": "Within how many days must an employee submit an expense report after incurring the expense?",
+    "gold_answer": "Expense reports must be submitted within 30 days of incurring the expense.",
+    "source_doc": "expense_reimbursement.md",
+    "category": "expense"
+  },
+  {
+    "id": "q11",
+    "question": "What is the maximum alcohol reimbursement per person per meal when entertaining clients?",
+    "gold_answer": "Alcohol is reimbursable when with clients or colleagues, not exceeding $30 per person per meal.",
+    "source_doc": "expense_reimbursement.md",
+    "category": "expense"
+  },
+  {
+    "id": "q12",
+    "question": "What is the minimum required receipt threshold for expense reimbursement?",
+    "gold_answer": "Receipts are required for expenses over $25. For expenses over $75, original itemized receipts are required. For expenses under $25, receipts are recommended but not required.",
+    "source_doc": "expense_reimbursement.md",
+    "category": "expense"
+  },
+  {
+    "id": "q13",
+    "question": "What is the company's contribution percentage toward employee medical insurance premiums?",
+    "gold_answer": "The company contributes 85% of the medical insurance premium. The employee contributes the remaining 15%.",
+    "source_doc": "benefits_policy.md",
+    "category": "benefits"
+  },
+  {
+    "id": "q14",
+    "question": "How many free EAP counseling sessions are available to each employee per year?",
+    "gold_answer": "5 free sessions per year per employee through the Employee Assistance Program (EAP), available 24/7 via phone and online.",
+    "source_doc": "benefits_policy.md",
+    "category": "benefits"
+  },
+  {
+    "id": "q15",
+    "question": "What is the company's 401(k) match policy?",
+    "gold_answer": "The company matches 100% of employee contributions up to 3% of salary, and an additional 50% match on the next 2% of contributions, for a maximum company match of 4% of salary.",
+    "source_doc": "benefits_policy.md",
+    "category": "benefits"
+  },
+  {
+    "id": "q16",
+    "question": "How many weeks of paid maternity leave are eligible pregnant employees entitled to?",
+    "gold_answer": "Eligible pregnant employees receive 16 weeks of paid maternity leave, with an additional 4 weeks of unpaid leave available.",
+    "source_doc": "benefits_policy.md",
+    "category": "benefits"
+  },
+  {
+    "id": "q17",
+    "question": "What is the annual tuition reimbursement limit per employee?",
+    "gold_answer": "Up to $5,000 per year per employee for job-related degree programs, certificates, and courses, subject to manager and HR approval and a minimum grade of B.",
+    "source_doc": "benefits_policy.md",
+    "category": "benefits"
+  },
+  {
+    "id": "q18",
+    "question": "Within how many hours must a data breach be reported to authorities under the company's data privacy policy?",
+    "gold_answer": "If required by law, authorities must be notified within 72 hours of detecting a data breach.",
+    "source_doc": "data_privacy_gdpr.md",
+    "category": "data_privacy"
+  },
+  {
+    "id": "q19",
+    "question": "How long must employee personal data be retained after termination?",
+    "gold_answer": "Employee data must be retained for 7 years post-termination for legal and tax purposes.",
+    "source_doc": "data_privacy_gdpr.md",
+    "category": "data_privacy"
+  },
+  {
+    "id": "q20",
+    "question": "How long does the company have to respond to an individual's data access request?",
+    "gold_answer": "The company must respond within 30 days of receiving a data access request. This may be extended up to 60 days for complex requests.",
+    "source_doc": "data_privacy_gdpr.md",
+    "category": "data_privacy"
+  },
+  {
+    "id": "q21",
+    "question": "What is the minimum password length required under the information security policy?",
+    "gold_answer": "Passwords must be a minimum of 12 characters, mixing uppercase letters, lowercase letters, numbers, and special characters.",
+    "source_doc": "information_security.md",
+    "category": "information_security"
+  },
+  {
+    "id": "q22",
+    "question": "How frequently must employees change their passwords?",
+    "gold_answer": "Employees must change their passwords every 90 days.",
+    "source_doc": "information_security.md",
+    "category": "information_security"
+  },
+  {
+    "id": "q23",
+    "question": "What is the automatic screen lock timeout required on all company laptops?",
+    "gold_answer": "All company-provided laptops and computers must have an automatic lock set to a 5-minute timeout.",
+    "source_doc": "information_security.md",
+    "category": "information_security"
+  },
+  {
+    "id": "q24",
+    "question": "What is the attendance disciplinary consequence for a third incident within 12 months?",
+    "gold_answer": "A third attendance incident within 12 months results in a 1-day suspension.",
+    "source_doc": "attendance_policy.md",
+    "category": "attendance"
+  },
+  {
+    "id": "q25",
+    "question": "How many absences within 12 months constitute chronic absenteeism under the attendance policy?",
+    "gold_answer": "A pattern of 5 or more absences within 12 months may be considered chronic absenteeism, which may result in disciplinary action independent of the formal progressive discipline structure.",
+    "source_doc": "attendance_policy.md",
+    "category": "attendance"
+  },
+  {
+    "id": "q26",
+    "question": "Within how many business days must a harassment investigation begin after a complaint is received?",
+    "gold_answer": "The investigation must start within 5 business days of the complaint being received. HR acknowledges the complaint within 24 hours and completes an initial assessment within 3 business days.",
+    "source_doc": "anti_harassment_policy.md",
+    "category": "anti_harassment"
+  },
+  {
+    "id": "q27",
+    "question": "How long does HR have to complete a harassment investigation?",
+    "gold_answer": "The investigation must be completed within 30 days, or HR must notify the parties of any delays. Findings are communicated within 5 business days of completion.",
+    "source_doc": "anti_harassment_policy.md",
+    "category": "anti_harassment"
+  },
+  {
+    "id": "q28",
+    "question": "What is the performance rating given to an employee who significantly exceeds expectations?",
+    "gold_answer": "A rating of 5 - Exceptional is given to employees who significantly exceed expectations.",
+    "source_doc": "performance_management.md",
+    "category": "performance_management"
+  },
+  {
+    "id": "q29",
+    "question": "How many days does an employee have to appeal a performance review rating?",
+    "gold_answer": "Employees may appeal their performance rating within 10 days by submitting a written appeal to HR. HR makes a final decision within 20 days.",
+    "source_doc": "performance_management.md",
+    "category": "performance_management"
+  },
+  {
+    "id": "q30",
+    "question": "What is the maximum weight an employee may lift alone without mechanical assistance or help from a colleague?",
+    "gold_answer": "Items over 50 pounds require the use of mechanical lifts or assistance from a colleague. Employees must use proper lifting techniques for all manual lifting.",
+    "source_doc": "workplace_safety.md",
+    "category": "workplace_safety"
+  }
 ]
