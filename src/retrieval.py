@@ -35,7 +35,7 @@ def retrieve(query: str, k: int = TOP_K) -> list:
          'source': meta['source'],
          'title': meta['title'],
          'section': meta['section'],
-         'score': round(1 -dist, 4)}
+         'score': round(1 - dist, 4) } # Convert distance to similarity score}
          for doc, meta, dist in zip(
              res['documents'][0],
              res['metadatas'][0],
