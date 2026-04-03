@@ -42,23 +42,3 @@ def retrieve(query: str, k: int = TOP_K) -> list:
              res['distances'][0]
          )
     ]
-
-if __name__ == "__main__":
-    import sys
-    queries = sys.argv[1:] or [
-        "How many PTO days do I get?",
-        "What is the mileage reimbursement rate?",
-        "Can I work remotely?",
-        "What is the capital of France?",
-    ]
-
-    for query in queries:
-       print(f"\n{'='*60}")
-       print(f"Query: {query}")
-       print("="*60)
-       results = retrieve(query, k=5)
-       for i, r in enumerate(results, 1):
-           print(f"\n Result {i} score={r['score']:.4f} [{r['source']}]")
-           print(f"  {r['title']} -- {r['section']}")
-           snippet = r["text"].replace("\n", " ")[:180]
-           print(f"  {snippet}...")

@@ -59,22 +59,3 @@ def answer(question: str, k: int = TOP_K)-> dict:
     return {'answer': text_out, 'citations': citations,
             'latency_ms': latency_ms, 'model': MODEL}
     
-
-if __name__ == "__main__":
-    import sys
-
-    question = " ".join(sys.argv[1:]) if len(sys.argv) > 1 else "How many PTO days do I get?"
-
-    print(f"\n{'='*60}")
-    print(f"Question: {question}")
-    print("="*60)
-
-    result = answer(question)
-
-    print(f"\nAnswer:\n{result['answer']}")
-    print(f"\nCitations ({len(result['citations'])}):")
-    for c in result["citations"]:
-        print(f"  - {c['title']} -- {c['section']}  [{c['source']}]")
-        print(f"    {c['snippet'][:120]}...")
-    print(f"\nLatency : {result['latency_ms']} ms")
-    print(f"Model   : {result['model']}")
