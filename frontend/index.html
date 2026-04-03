@@ -1,0 +1,990 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Acme Policy Assistant</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ─── Tokens ─────────────────────────────────────────────────────────── */
+    :root {
+      --ink:        #0f0e0c;
+      --paper:      #f5f1ea;
+      --cream:      #ede8df;
+      --rule:       #d4cdc0;
+      --muted:      #8a8278;
+      --accent:     #b85c2a;
+      --accent-lt:  #f0e2d8;
+      --accent-dk:  #8c3f18;
+      --blue:       #2a5eb8;
+      --blue-lt:    #dce8f8;
+      --green:      #2a7a4b;
+      --green-lt:   #d8f0e3;
+      --warn:       #a0520a;
+      --warn-lt:    #fdf0e0;
+
+      --radius:     4px;
+      --radius-lg:  10px;
+      --shadow-sm:  0 1px 3px rgba(15,14,12,.08), 0 1px 2px rgba(15,14,12,.04);
+      --shadow-md:  0 4px 16px rgba(15,14,12,.10), 0 2px 6px rgba(15,14,12,.06);
+      --shadow-lg:  0 12px 40px rgba(15,14,12,.14), 0 4px 12px rgba(15,14,12,.08);
+
+      --sidebar-w:  280px;
+      --header-h:   60px;
+    }
+
+    /* ─── Reset ──────────────────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; font-family: 'DM Sans', sans-serif; }
+
+    body {
+      background: var(--paper);
+      color: var(--ink);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    /* ─── Header ─────────────────────────────────────────────────────────── */
+    header {
+      height: var(--header-h);
+      background: var(--ink);
+      display: flex;
+      align-items: center;
+      padding: 0 24px;
+      gap: 12px;
+      flex-shrink: 0;
+      position: relative;
+      z-index: 10;
+    }
+
+    .logo-mark {
+      width: 32px;
+      height: 32px;
+      background: var(--accent);
+      border-radius: var(--radius);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .logo-mark svg { width: 18px; height: 18px; fill: #fff; }
+
+    .brand {
+      font-family: 'DM Serif Display', serif;
+      font-size: 18px;
+      color: var(--paper);
+      letter-spacing: 0.01em;
+    }
+
+    .brand span {
+      color: var(--accent);
+    }
+
+    .header-right {
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .status-pill {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255,255,255,.07);
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 20px;
+      padding: 4px 10px 4px 8px;
+      font-size: 11px;
+      color: rgba(245,241,234,.6);
+      font-family: 'DM Mono', monospace;
+      font-weight: 400;
+    }
+
+    .status-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #4caf7d;
+      animation: pulse 2.4s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50%       { opacity: 0.4; }
+    }
+
+    .header-divider {
+      width: 1px;
+      height: 20px;
+      background: rgba(255,255,255,.12);
+    }
+
+    .clear-btn {
+      background: none;
+      border: 1px solid rgba(255,255,255,.18);
+      color: rgba(245,241,234,.6);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 12px;
+      padding: 5px 12px;
+      border-radius: var(--radius);
+      cursor: pointer;
+      transition: all .15s;
+      letter-spacing: 0.02em;
+    }
+
+    .clear-btn:hover {
+      background: rgba(255,255,255,.08);
+      color: var(--paper);
+      border-color: rgba(255,255,255,.3);
+    }
+
+    /* ─── Layout ─────────────────────────────────────────────────────────── */
+    .app-body {
+      flex: 1;
+      display: flex;
+      min-height: 0;
+    }
+
+    /* ─── Sidebar ────────────────────────────────────────────────────────── */
+    aside {
+      width: var(--sidebar-w);
+      background: var(--cream);
+      border-right: 1px solid var(--rule);
+      display: flex;
+      flex-direction: column;
+      flex-shrink: 0;
+      overflow-y: auto;
+    }
+
+    .sidebar-section {
+      padding: 20px 16px 16px;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .sidebar-label {
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 12px;
+      font-family: 'DM Mono', monospace;
+    }
+
+    .policy-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .policy-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 8px;
+      border-radius: var(--radius);
+      font-size: 12.5px;
+      color: var(--ink);
+      cursor: default;
+      transition: background .12s;
+    }
+
+    .policy-item:hover { background: rgba(15,14,12,.05); }
+
+    .policy-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--accent);
+      flex-shrink: 0;
+    }
+
+    .policy-item span { line-height: 1.3; }
+
+    /* Suggested questions */
+    .suggest-list {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .suggest-btn {
+      text-align: left;
+      background: none;
+      border: 1px solid var(--rule);
+      border-radius: var(--radius);
+      padding: 8px 10px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 12px;
+      color: var(--ink);
+      cursor: pointer;
+      line-height: 1.4;
+      transition: all .15s;
+      position: relative;
+    }
+
+    .suggest-btn::before {
+      content: '↗';
+      position: absolute;
+      right: 8px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 10px;
+      color: var(--muted);
+      opacity: 0;
+      transition: opacity .15s;
+    }
+
+    .suggest-btn:hover {
+      background: var(--accent-lt);
+      border-color: var(--accent);
+      color: var(--accent-dk);
+    }
+
+    .suggest-btn:hover::before { opacity: 1; }
+
+    /* Sidebar stats */
+    .stat-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+
+    .stat-card {
+      background: var(--paper);
+      border: 1px solid var(--rule);
+      border-radius: var(--radius);
+      padding: 10px;
+    }
+
+    .stat-value {
+      font-family: 'DM Serif Display', serif;
+      font-size: 20px;
+      color: var(--accent);
+      line-height: 1;
+      margin-bottom: 3px;
+    }
+
+    .stat-label {
+      font-size: 10px;
+      color: var(--muted);
+      letter-spacing: 0.04em;
+    }
+
+    /* ─── Main Chat ──────────────────────────────────────────────────────── */
+    main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+    }
+
+    /* Messages */
+    #messages {
+      flex: 1;
+      overflow-y: auto;
+      padding: 32px 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+      scroll-behavior: smooth;
+    }
+
+    #messages::-webkit-scrollbar { width: 4px; }
+    #messages::-webkit-scrollbar-track { background: transparent; }
+    #messages::-webkit-scrollbar-thumb { background: var(--rule); border-radius: 4px; }
+
+    /* Empty / Welcome state */
+    .welcome {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      gap: 16px;
+      padding: 40px;
+      animation: fadeUp .5s ease both;
+    }
+
+    .welcome-icon {
+      width: 64px;
+      height: 64px;
+      background: var(--ink);
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 8px;
+    }
+
+    .welcome-icon svg { width: 32px; height: 32px; fill: var(--paper); }
+
+    .welcome h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 26px;
+      color: var(--ink);
+    }
+
+    .welcome p {
+      font-size: 14px;
+      color: var(--muted);
+      max-width: 380px;
+      line-height: 1.6;
+    }
+
+    .welcome-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: center;
+      margin-top: 8px;
+    }
+
+    .chip {
+      background: var(--paper);
+      border: 1px solid var(--rule);
+      border-radius: 20px;
+      padding: 7px 14px;
+      font-size: 12.5px;
+      color: var(--ink);
+      cursor: pointer;
+      transition: all .15s;
+    }
+
+    .chip:hover {
+      background: var(--accent-lt);
+      border-color: var(--accent);
+      color: var(--accent-dk);
+    }
+
+    /* Message bubbles */
+    .msg {
+      display: flex;
+      gap: 12px;
+      animation: fadeUp .3s ease both;
+      max-width: 780px;
+      width: 100%;
+      align-self: flex-start;
+    }
+
+    .msg.user {
+      flex-direction: row-reverse;
+      align-self: flex-end;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(10px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: var(--radius);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 13px;
+      font-weight: 500;
+      margin-top: 2px;
+    }
+
+    .msg.user .avatar {
+      background: var(--ink);
+      color: var(--paper);
+      font-family: 'DM Serif Display', serif;
+    }
+
+    .msg.assistant .avatar {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .msg.assistant .avatar svg { width: 16px; height: 16px; fill: #fff; }
+
+    .bubble {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      max-width: calc(100% - 44px);
+    }
+
+    .bubble-body {
+      background: var(--cream);
+      border: 1px solid var(--rule);
+      border-radius: 2px var(--radius-lg) var(--radius-lg) var(--radius-lg);
+      padding: 14px 16px;
+      font-size: 14px;
+      line-height: 1.65;
+      color: var(--ink);
+    }
+
+    .msg.user .bubble-body {
+      background: var(--ink);
+      color: var(--paper);
+      border: none;
+      border-radius: var(--radius-lg) 2px var(--radius-lg) var(--radius-lg);
+    }
+
+    /* Citation cards */
+    .citations {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .citation-header {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-family: 'DM Mono', monospace;
+      padding: 0 2px;
+    }
+
+    .cite-card {
+      background: var(--paper);
+      border: 1px solid var(--rule);
+      border-left: 3px solid var(--accent);
+      border-radius: var(--radius);
+      padding: 10px 12px;
+      font-size: 12px;
+      cursor: pointer;
+      transition: all .15s;
+    }
+
+    .cite-card:hover {
+      background: var(--accent-lt);
+      border-color: var(--accent);
+    }
+
+    .cite-title {
+      font-weight: 500;
+      color: var(--ink);
+      margin-bottom: 2px;
+    }
+
+    .cite-section {
+      color: var(--muted);
+      font-size: 11px;
+      margin-bottom: 5px;
+      font-family: 'DM Mono', monospace;
+    }
+
+    .cite-snippet {
+      color: var(--ink);
+      opacity: .65;
+      font-size: 11.5px;
+      line-height: 1.5;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .cite-card.expanded .cite-snippet {
+      -webkit-line-clamp: unset;
+    }
+
+    /* Latency badge */
+    .meta-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 0 2px;
+    }
+
+    .latency-badge {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      padding: 2px 7px;
+      border-radius: 10px;
+      background: var(--green-lt);
+      color: var(--green);
+      border: 1px solid rgba(42,122,75,.2);
+    }
+
+    .latency-badge.slow {
+      background: var(--warn-lt);
+      color: var(--warn);
+      border-color: rgba(160,82,10,.2);
+    }
+
+    /* Typing indicator */
+    .typing-indicator {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding: 16px;
+    }
+
+    .typing-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--muted);
+      animation: typingBounce 1.2s ease-in-out infinite;
+    }
+
+    .typing-dot:nth-child(2) { animation-delay: .2s; }
+    .typing-dot:nth-child(3) { animation-delay: .4s; }
+
+    @keyframes typingBounce {
+      0%, 80%, 100% { transform: translateY(0); opacity: .4; }
+      40%            { transform: translateY(-5px); opacity: 1; }
+    }
+
+    /* Error state */
+    .error-bubble {
+      background: #fff2f2;
+      border: 1px solid #f9c6c6;
+      border-left: 3px solid #d64040;
+      border-radius: var(--radius);
+      padding: 12px 14px;
+      font-size: 13px;
+      color: #8b2020;
+      line-height: 1.5;
+    }
+
+    /* Out-of-corpus note */
+    .ooc-note {
+      background: var(--warn-lt);
+      border: 1px solid rgba(160,82,10,.2);
+      border-left: 3px solid var(--warn);
+      border-radius: var(--radius);
+      padding: 10px 12px;
+      font-size: 12.5px;
+      color: var(--warn);
+      line-height: 1.5;
+    }
+
+    /* ─── Input bar ──────────────────────────────────────────────────────── */
+    .input-bar {
+      border-top: 1px solid var(--rule);
+      padding: 16px 40px 20px;
+      background: var(--paper);
+      flex-shrink: 0;
+    }
+
+    .input-row {
+      display: flex;
+      gap: 10px;
+      align-items: flex-end;
+      background: #fff;
+      border: 1.5px solid var(--rule);
+      border-radius: var(--radius-lg);
+      padding: 10px 10px 10px 16px;
+      transition: border-color .15s, box-shadow .15s;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .input-row:focus-within {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(184,92,42,.12), var(--shadow-sm);
+    }
+
+    textarea {
+      flex: 1;
+      border: none;
+      outline: none;
+      background: transparent;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      color: var(--ink);
+      resize: none;
+      min-height: 22px;
+      max-height: 120px;
+      line-height: 1.55;
+      padding: 1px 0;
+    }
+
+    textarea::placeholder { color: var(--muted); }
+
+    .send-btn {
+      width: 36px;
+      height: 36px;
+      background: var(--accent);
+      border: none;
+      border-radius: var(--radius);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: background .15s, transform .1s;
+    }
+
+    .send-btn:hover { background: var(--accent-dk); }
+    .send-btn:active { transform: scale(.95); }
+    .send-btn:disabled { background: var(--rule); cursor: not-allowed; }
+    .send-btn svg { width: 15px; height: 15px; fill: #fff; }
+
+    .input-hint {
+      font-size: 11px;
+      color: var(--muted);
+      margin-top: 8px;
+      padding: 0 4px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    kbd {
+      background: var(--cream);
+      border: 1px solid var(--rule);
+      border-radius: 3px;
+      padding: 1px 5px;
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      color: var(--muted);
+    }
+
+    /* ─── Responsive ─────────────────────────────────────────────────────── */
+    @media (max-width: 768px) {
+      aside { display: none; }
+      #messages { padding: 20px 16px; }
+      .input-bar { padding: 12px 16px 16px; }
+    }
+
+    /* ─── Scrollbar ──────────────────────────────────────────────────────── */
+    aside::-webkit-scrollbar { width: 3px; }
+    aside::-webkit-scrollbar-track { background: transparent; }
+    aside::-webkit-scrollbar-thumb { background: var(--rule); border-radius: 3px; }
+  </style>
+</head>
+
+<body>
+
+<!-- ── Header ─────────────────────────────────────────────────────────────── -->
+<header>
+  <div class="logo-mark">
+    <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm-1 1.5L18.5 9H13V3.5zM9 17H7v-2h2v2zm0-4H7v-2h2v2zm0-4H7V7h2v2zm8 8h-6v-2h6v2zm0-4h-6v-2h6v2z"/></svg>
+  </div>
+  <span class="brand">Acme <span>Policy</span> Assistant</span>
+
+  <div class="header-right">
+    <div class="status-pill">
+      <div class="status-dot"></div>
+      RAG · 13 policies
+    </div>
+    <div class="header-divider"></div>
+    <button class="clear-btn" onclick="clearChat()">Clear chat</button>
+  </div>
+</header>
+
+<!-- ── Body ───────────────────────────────────────────────────────────────── -->
+<div class="app-body">
+
+  <!-- Sidebar -->
+  <aside>
+    <div class="sidebar-section">
+      <div class="sidebar-label">Policy Index</div>
+      <ul class="policy-list">
+        <li class="policy-item"><div class="policy-dot"></div><span>PTO &amp; Leave</span></li>
+        <li class="policy-item"><div class="policy-dot"></div><span>Remote Work</span></li>
+        <li class="policy-item"><div class="policy-dot"></div><span>Expense Reimbursement</span></li>
+        <li class="policy-item"><div class="policy-dot"></div><span>Benefits</span></li>
+        <li class="policy-item"><div class="policy-dot"></div><span>Data Privacy &amp; GDPR</span></li>
+        <li class="policy-item"><div class="policy-dot"></div><span>Information Security</span></li>
+        <li class="policy-item"><div class="policy-dot"></div><span>Attendance &amp; Punctuality</span></li>
+        <li class="policy-item"><div class="policy-dot"></div><span>Anti-Harassment</span></li>
+        <li class="policy-item"><div class="policy-dot"></div><span>Performance Management</span></li>
+        <li class="policy-item"><div class="policy-dot"></div><span>Workplace Safety</span></li>
+        <li class="policy-item"><div class="policy-dot"></div><span>Code of Conduct</span></li>
+        <li class="policy-item"><div class="policy-dot"></div><span>Drug &amp; Alcohol Testing</span></li>
+        <li class="policy-item"><div class="policy-dot"></div><span>Social Media &amp; Internet</span></li>
+      </ul>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-label">Try asking</div>
+      <div class="suggest-list">
+        <button class="suggest-btn" onclick="prefill('How many PTO days do I get after 3 years?')">How many PTO days after 3 years?</button>
+        <button class="suggest-btn" onclick="prefill('What is the monthly internet stipend for remote employees?')">Remote work internet stipend?</button>
+        <button class="suggest-btn" onclick="prefill('What is the company 401(k) match policy?')">401(k) match policy?</button>
+        <button class="suggest-btn" onclick="prefill('How many weeks of paid maternity leave am I entitled to?')">Paid maternity leave?</button>
+        <button class="suggest-btn" onclick="prefill('Within how many hours must a data breach be reported?')">Data breach notification time?</button>
+        <button class="suggest-btn" onclick="prefill('What is the mileage reimbursement rate for personal vehicle use?')">Personal vehicle mileage rate?</button>
+        <button class="suggest-btn" onclick="prefill('Can employees on a PIP work remotely?')">Can PIP employees work remote?</button>
+      </div>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-label">System</div>
+      <div class="stat-grid">
+        <div class="stat-card">
+          <div class="stat-value">233</div>
+          <div class="stat-label">Index chunks</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value">k=3</div>
+          <div class="stat-label">Top-k retrieval</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value">70B</div>
+          <div class="stat-label">LLM params</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value" id="msg-count">0</div>
+          <div class="stat-label">Messages</div>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Chat main -->
+  <main>
+    <div id="messages">
+      <!-- Welcome state injected by JS -->
+    </div>
+
+    <div class="input-bar">
+      <div class="input-row">
+        <textarea
+          id="question"
+          placeholder="Ask anything about company policies…"
+          rows="1"
+          autofocus
+        ></textarea>
+        <button class="send-btn" id="send-btn" onclick="sendMessage()" aria-label="Send">
+          <svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+        </button>
+      </div>
+      <div class="input-hint">
+        Press <kbd>Enter</kbd> to send &nbsp;·&nbsp; <kbd>Shift+Enter</kbd> for new line
+      </div>
+    </div>
+  </main>
+
+</div>
+
+<!-- ── Scripts ─────────────────────────────────────────────────────────────── -->
+<script>
+  const API_URL    = '/chat';
+  const msgWrap    = document.getElementById('messages');
+  const textarea   = document.getElementById('question');
+  const sendBtn    = document.getElementById('send-btn');
+  const msgCounter = document.getElementById('msg-count');
+
+  let msgCount = 0;
+
+  /* ── Auto-resize textarea ──────────────────────────────────────────────── */
+  textarea.addEventListener('input', () => {
+    textarea.style.height = 'auto';
+    textarea.style.height = Math.min(textarea.scrollHeight, 120) + 'px';
+  });
+
+  textarea.addEventListener('keydown', e => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      sendMessage();
+    }
+  });
+
+  /* ── Welcome state ─────────────────────────────────────────────────────── */
+  function showWelcome() {
+    msgWrap.innerHTML = `
+      <div class="welcome">
+        <div class="welcome-icon">
+          <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm-1 1.5L18.5 9H13V3.5zM9 17H7v-2h2v2zm0-4H7v-2h2v2zm0-4H7V7h2v2zm8 8h-6v-2h6v2zm0-4h-6v-2h6v2z"/></svg>
+        </div>
+        <h2>Acme Policy Assistant</h2>
+        <p>Ask questions about HR policies and get accurate, cited answers drawn directly from official documents.</p>
+        <div class="welcome-chips">
+          <button class="chip" onclick="prefill('How much PTO do I earn per year?')">PTO accrual rates</button>
+          <button class="chip" onclick="prefill('What benefits does the company offer?')">Employee benefits</button>
+          <button class="chip" onclick="prefill('What is the expense reimbursement process?')">Expense reimbursement</button>
+          <button class="chip" onclick="prefill('How do I report a security incident?')">Security incidents</button>
+        </div>
+      </div>`;
+  }
+
+  /* ── Add a message bubble ──────────────────────────────────────────────── */
+  function addMessage(role, content, meta) {
+    /* Remove welcome state on first message */
+    const welcome = msgWrap.querySelector('.welcome');
+    if (welcome) welcome.remove();
+
+    msgCount++;
+    msgCounter.textContent = msgCount;
+
+    const div = document.createElement('div');
+    div.className = `msg ${role}`;
+
+    if (role === 'user') {
+      div.innerHTML = `
+        <div class="avatar">Y</div>
+        <div class="bubble">
+          <div class="bubble-body">${escHtml(content)}</div>
+        </div>`;
+    } else {
+      const isOOC = content.toLowerCase().includes('only answer questions about') ||
+                    content.toLowerCase().includes('not covered in the available');
+
+      let citationHtml = '';
+      if (meta && meta.citations && meta.citations.length) {
+        const cards = meta.citations.map((c, i) => `
+          <div class="cite-card" onclick="this.classList.toggle('expanded')" title="Click to expand">
+            <div class="cite-title">${escHtml(c.title)}</div>
+            <div class="cite-section">${escHtml(c.section)}</div>
+            <div class="cite-snippet">${escHtml(c.snippet)}</div>
+          </div>`).join('');
+
+        citationHtml = `
+          <div class="citations">
+            <div class="citation-header">Sources (${meta.citations.length})</div>
+            ${cards}
+          </div>`;
+      }
+
+      const latencyClass = meta && meta.latency_ms > 8000 ? 'slow' : '';
+      const latencyBadge = meta ? `<div class="meta-row"><span class="latency-badge ${latencyClass}">${meta.latency_ms} ms</span></div>` : '';
+
+      const oocNote = isOOC ? `<div class="ooc-note">This question isn't covered by the available policy documents. Try rephrasing or ask an HR-specific question.</div>` : '';
+
+      div.innerHTML = `
+        <div class="avatar">
+          <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm-1 1.5L18.5 9H13V3.5zM9 17H7v-2h2v2zm0-4H7v-2h2v2zm0-4H7V7h2v2zm8 8h-6v-2h6v2zm0-4h-6v-2h6v2z"/></svg>
+        </div>
+        <div class="bubble">
+          ${oocNote}
+          <div class="bubble-body">${formatAnswer(content)}</div>
+          ${citationHtml}
+          ${latencyBadge}
+        </div>`;
+    }
+
+    msgWrap.appendChild(div);
+    msgWrap.scrollTop = msgWrap.scrollHeight;
+    return div;
+  }
+
+  /* ── Typing indicator ──────────────────────────────────────────────────── */
+  function showTyping() {
+    const div = document.createElement('div');
+    div.className = 'msg assistant';
+    div.id = 'typing';
+    div.innerHTML = `
+      <div class="avatar">
+        <svg viewBox="0 0 24 24" fill="#fff"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm-1 1.5L18.5 9H13V3.5z"/></svg>
+      </div>
+      <div class="bubble">
+        <div class="bubble-body">
+          <div class="typing-indicator">
+            <div class="typing-dot"></div>
+            <div class="typing-dot"></div>
+            <div class="typing-dot"></div>
+          </div>
+        </div>
+      </div>`;
+    msgWrap.appendChild(div);
+    msgWrap.scrollTop = msgWrap.scrollHeight;
+  }
+
+  function removeTyping() {
+    const t = document.getElementById('typing');
+    if (t) t.remove();
+  }
+
+  /* ── Send ──────────────────────────────────────────────────────────────── */
+  async function sendMessage() {
+    const q = textarea.value.trim();
+    if (!q) return;
+
+    textarea.value = '';
+    textarea.style.height = 'auto';
+    sendBtn.disabled = true;
+
+    addMessage('user', q);
+    showTyping();
+
+    try {
+      const res = await fetch(API_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ question: q }),
+      });
+
+      removeTyping();
+
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+
+      const data = await res.json();
+      addMessage('assistant', data.answer, {
+        citations: data.citations,
+        latency_ms: data.latency_ms,
+      });
+
+    } catch (err) {
+      removeTyping();
+      const errDiv = document.createElement('div');
+      errDiv.className = 'msg assistant';
+      errDiv.innerHTML = `
+        <div class="avatar"><svg viewBox="0 0 24 24" fill="#fff"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm-1 1.5L18.5 9H13V3.5z"/></svg></div>
+        <div class="bubble">
+          <div class="error-bubble">
+            <strong>Unable to reach the server.</strong><br>
+            ${escHtml(err.message)} — make sure <code>app.py</code> is running on <code>localhost:5000</code>.
+          </div>
+        </div>`;
+      msgWrap.appendChild(errDiv);
+      msgWrap.scrollTop = msgWrap.scrollHeight;
+    }
+
+    sendBtn.disabled = false;
+    textarea.focus();
+  }
+
+  /* ── Prefill ───────────────────────────────────────────────────────────── */
+  function prefill(text) {
+    textarea.value = text;
+    textarea.style.height = 'auto';
+    textarea.style.height = Math.min(textarea.scrollHeight, 120) + 'px';
+    textarea.focus();
+  }
+
+  /* ── Clear ─────────────────────────────────────────────────────────────── */
+  function clearChat() {
+    msgCount = 0;
+    msgCounter.textContent = '0';
+    showWelcome();
+  }
+
+  /* ── Helpers ───────────────────────────────────────────────────────────── */
+  function escHtml(str) {
+    return String(str)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
+  }
+
+  function formatAnswer(text) {
+    // Bold **text**
+    text = escHtml(text)
+      .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+      // Inline code
+      .replace(/`([^`]+)`/g, '<code style="background:var(--cream);border:1px solid var(--rule);border-radius:3px;padding:1px 5px;font-family:\'DM Mono\',monospace;font-size:.9em">$1</code>')
+      // Source citation line
+      .replace(/\[Source:(.*?)\]/g, '<span style="display:block;margin-top:10px;font-size:11px;color:var(--muted);font-family:\'DM Mono\',monospace">[Source:$1]</span>')
+      // Line breaks
+      .replace(/\n/g, '<br>');
+    return text;
+  }
+
+  /* ── Init ──────────────────────────────────────────────────────────────── */
+  showWelcome();
+</script>
+
+</body>
+</html>
