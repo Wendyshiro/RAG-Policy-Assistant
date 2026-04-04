@@ -7,6 +7,11 @@ Usage:
     python src/ingest.py --verify         # verify the index after build
 """
 
+import warnings
+warnings.filterwarnings("ignore")
+
+
+
 import os
 import sys
 import hashlib

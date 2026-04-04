@@ -1,4 +1,7 @@
 #chromadb top-k query
+import warnings
+warnings.filterwarnings("ignore")
+
 import os
 import chromadb
 from sentence_transformers import SentenceTransformer
