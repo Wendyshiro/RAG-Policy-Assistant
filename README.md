@@ -4,7 +4,7 @@ An AI-powered HR policy Q&A system built with Retrieval-Augmented Generation (RA
 Ask questions about company policies in plain English and get accurate, cited answers
 grounded in the actual policy documents.
 
-**Live Demo:** [https://rag-policy-app.onrender.com](https://rag-policy-app.onrender.com/)  
+**Live Demo:** [https://rag-policy-assistant-production.up.railway.app/](https://rag-policy-assistant-production.up.railway.app/)  
 **Built for:** Quantic MSSE AI Engineering Project
 
 ---
