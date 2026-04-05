@@ -1,0 +1,23 @@
+[
+  {
+    "k": 3,
+    "groundedness_pct": 90.0,
+    "citation_acc_pct": 100.0,
+    "latency_p50_ms": 883,
+    "latency_p95_ms": 1135
+  },
+  {
+    "k": 5,
+    "groundedness_pct": 93.3,
+    "citation_acc_pct": 100.0,
+    "latency_p50_ms": 865,
+    "latency_p95_ms": 1178
+  },
+  {
+    "k": 8,
+    "groundedness_pct": 93.3,
+    "citation_acc_pct": 100.0,
+    "latency_p50_ms": 980,
+    "latency_p95_ms": 1560
+  }
+]
