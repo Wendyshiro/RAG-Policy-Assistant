@@ -100,3 +100,12 @@ if __name__ == "__main__":
     debug = os.getenv("FLASK_DEBUG", "true").lower() == "true"
     log.info("Starting dev server on http://localhost:%d  (debug=%s)", port, debug)
     app.run(host="0.0.0.0", port=port, debug=debug)
+
+# Warm up the embedder and ChromaDB connection at startup
+with app.app_context():
+    try:
+        from src.retrieval import retrieve
+        retrieve("warmup", k=1)
+        log.info("Retrieval pipeline warmed up.")
+    except Exception as e:
+        log.warning("Warmup failed: %s", e)
