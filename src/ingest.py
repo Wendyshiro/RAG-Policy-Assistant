@@ -184,29 +184,29 @@ def _make_chunk(doc: dict, section: str, body: str, part: int) -> dict:
 
 
 # ---------------------------------------------------------------------------
-# 3. Embed
+# 3. Embed  (ChromaDB built-in — no torch / sentence-transformers required)
 # ---------------------------------------------------------------------------
 def embed_chunks(chunks: list[dict], model_name: str) -> list[list[float]]:
-    """Embed all chunks in batches; returns embeddings aligned with chunks."""
+    """
+    Embed all chunks using ChromaDB's DefaultEmbeddingFunction (onnxruntime).
+    This avoids torch/sentence-transformers version conflicts on Render.
+    model_name is accepted for API compatibility but DefaultEmbeddingFunction
+    uses all-MiniLM-L6-v2 internally — same model, no torch needed.
+    """
     try:
-        from sentence_transformers import SentenceTransformer
+        from chromadb.utils.embedding_functions import DefaultEmbeddingFunction
     except ImportError:
-        log.error("sentence-transformers not installed. Run: pip install sentence-transformers")
+        log.error("chromadb not installed. Run: pip install chromadb")
         sys.exit(1)
 
-    log.info("Loading embedding model: %s", model_name)
-    model = SentenceTransformer(model_name)
+    log.info("Loading embedding model: all-MiniLM-L6-v2 (via ChromaDB/onnxruntime)")
+    embedder = DefaultEmbeddingFunction()
 
     texts = [c["text"] for c in chunks]
-    log.info("Embedding %d chunks (batch size %d)…", len(texts), BATCH_SIZE)
+    log.info("Embedding %d chunks…", len(texts))
 
     t0 = time.time()
-    embeddings = model.encode(
-        texts,
-        batch_size=BATCH_SIZE,
-        show_progress_bar=True,
-        convert_to_numpy=True,
-    ).tolist()
+    embeddings = embedder(texts)   # returns list[list[float]]
     elapsed = time.time() - t0
 
     log.info("Embedding complete in %.1fs  (%.0f chunks/s)", elapsed, len(chunks) / elapsed)
@@ -304,16 +304,12 @@ def _verify_index(col, chunks: list[dict]) -> None:
         "Workers compensation coverage",
     ]
 
-    try:
-        from sentence_transformers import SentenceTransformer
-        model = SentenceTransformer(EMBED_MODEL)
-    except ImportError:
-        log.warning("Cannot verify without sentence-transformers.")
-        return
+    from chromadb.utils.embedding_functions import DefaultEmbeddingFunction
+    embedder = DefaultEmbeddingFunction()
 
     for query in test_queries:
-        q_emb = model.encode(query).tolist()
-        results = col.query(query_embeddings=[q_emb], n_results=2)
+        q_emb = embedder([query])
+        results = col.query(query_embeddings=q_emb, n_results=2)
         docs_returned = results.get("documents", [[]])[0]
         metas = results.get("metadatas", [[]])[0]
         log.info("  Q: %s", query)
