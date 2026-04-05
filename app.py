@@ -93,15 +93,6 @@ def health():
     })
 
 
-# Warm up the embedder and ChromaDB connection at startup
-with app.app_context():
-    try:
-        from src.retrieval import retrieve
-        retrieve("warmup", k=1)
-        log.info("Retrieval pipeline warmed up.")
-    except Exception as e:
-        log.warning("Warmup failed: %s", e)
-
 # ── Dev server ───────────────────────────────────────────────────────────────
 
 if __name__ == "__main__":
