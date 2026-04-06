@@ -472,5 +472,13 @@ GitHub collaborator `quantic-grader` has been added to this repository.
 **Submission email:** msse+projects@quantic.edu
 
 ---
+## Deployment (Railway)
+
+The app is deployed on Railway free tier. See [deployed.md](deployed.md) for the live URL.
+
+**Railway configuration:**
+- **Build Command:** `pip install -r requirements.txt && python -W ignore src/ingest.py`
+- **Start Command:** `gunicorn app:app`
+- **Python Version:** 3.11 (set via Railway environment variable NIXPACKS_PYTHON_VERSION=3.11)
 
 *Quantic MSSE AI Engineering Project — April 2026*
