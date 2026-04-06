@@ -26,12 +26,4 @@ jobs:
       - name: Run tests
         run: pytest tests/test_app.py -v --tb=short
 
-  deploy:
-    needs: test
-    runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main'
-    steps:
-      - name: Trigger Railway deploy
-        run: curl -X POST "${RAILWAY_DEPLOY_HOOK_URL}"
-        env:
-          RENDER_DEPLOY_HOOK_URL: ${{ secrets.RAILWAY_DEPLOY_HOOK_URL }}
+ 
