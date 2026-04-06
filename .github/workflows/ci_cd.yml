@@ -31,14 +31,7 @@ jobs:
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main'
     steps:
-<<<<<<< HEAD
-      - name: Trigger Render deploy
-        run: curl -X POST "${RAILWAY_DEPLOY_HOOK_URL}"
-        env:
-          RAILWAY_DEPLOY_HOOK_URL: ${{ secrets.RAILWAY_DEPLOY_HOOK_URL }}
-=======
       - name: Trigger Railway deploy
         run: curl -X POST "${RAILWAY_DEPLOY_HOOK_URL}"
         env:
           RENDER_DEPLOY_HOOK_URL: ${{ secrets.RAILWAY_DEPLOY_HOOK_URL }}
->>>>>>> bc9bbbe5e97428d1855c64c9537f0eea9b48ea34
