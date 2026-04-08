@@ -326,24 +326,6 @@ The system answers questions from 13 company policy documents:
 | `social_media_internet_use.md` | Acceptable use, monitoring, streaming |
 | `workplace_safety.md` | PPE, incident reporting, emergency procedures |
 
----
-
-## Deployment (Render)
-
-The app is deployed on Render free tier. See [deployed.md](deployed.md) for the live URL.
-
-**Render configuration:**
-- **Build Command:** `pip install -r requirements.txt && python -W ignore src/ingest.py`
-- **Start Command:** `gunicorn app:app`
-- **Python Version:** 3.11.9 (pinned via `.python-version`)
-- **Environment Variables:** Set in Render dashboard (same keys as `.env.example`)
-
-> **Note:** Render free tier has ephemeral disk storage. The vector index is
-> rebuilt on every deploy via the Build Command. This adds ~60 seconds to
-> deploy time but requires no paid persistent storage.
-
-**Auto-deploy:** Enabled via GitHub Actions webhook. Every push to `main` that
-passes CI triggers an automatic Render deploy.
 
 ---
 
